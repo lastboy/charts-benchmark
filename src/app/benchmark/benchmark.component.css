@@ -1,0 +1,6 @@
+.wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-areas: "a";
+  grid-gap: 10px;
+}
