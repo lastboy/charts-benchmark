@@ -3,32 +3,57 @@ import {type} from '../../utils';
 import {IChart} from '../model/IChartVM';
 
 export const ActionTypes = {
-  ADD_CHART: type('[todo] add todo'),
-  REMOVE_CHART: type('[todo] remove todo'),
-  UPDATE_CHART: type('[todo] update todo')
+  ADD_CHART: type('[chart] add chart'),
+  REMOVE_CHART: type('[chart] remove chart'),
+  UPDATE_CHART: type('[chart] update chart'),
+  SET_CHARTS: type('[chart] set charts'),
+  WIPE_CHARTS: type('[chart] wipe charts'),
+  LOG: type('[chart] add log entry')
 };
 
-export class AddTodoAction implements Action {
+export class SetChartAction implements Action {
+  type: string;
+  constructor(public payload: IChart[]) {
+    this.type = ActionTypes.SET_CHARTS;
+  }
+}
+
+export class WipeChartAction implements Action {
+  type: string;
+  constructor() {
+    this.type = ActionTypes.WIPE_CHARTS;
+  }
+}
+
+export class AddChartAction implements Action {
   type: string;
   constructor(public payload: IChart) {
     this.type = ActionTypes.ADD_CHART;
   }
 }
 
-export class RemoveTodoAction implements Action {
+export class RemoveChartAction implements Action {
   type: string;
-  constructor(public payload: string) {
+  constructor(public payload: IChart) {
     this.type = ActionTypes.REMOVE_CHART;
   }
 }
 
-export class UpdateTodoStatusAction implements Action {
+export class UpdateChartStatusAction implements Action {
   type: string;
   constructor(public payload) {
     this.type = ActionTypes.UPDATE_CHART;
   }
 }
 
-export type Actions = AddTodoAction
-  | RemoveTodoAction
-  | UpdateTodoStatusAction;
+export class logAction implements Action {
+  type: string;
+  constructor(public payload) {
+    this.type = ActionTypes.LOG;
+  }
+}
+
+export type Actions = AddChartAction
+  | RemoveChartAction
+  | UpdateChartStatusAction
+  | logAction;

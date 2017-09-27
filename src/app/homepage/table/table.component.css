@@ -1,0 +1,75 @@
+.mat-row {
+  display: flex;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  align-items: center;
+  height: 48px;
+  padding: 0 24px;
+}
+
+.btns {
+  display: flex;
+}
+
+.btn-row {
+  border: 1px solid white;
+  cursor: pointer;
+  margin: 10px;
+  height: 26px;
+  line-height: 5px;
+  background-color: white;
+
+}
+
+.red-x img {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+TBODY TR.mat-row   {
+  border-bottom: 2px solid #efefef  ;
+}
+
+TBODY TR.mat-row:hover {
+  border-bottom: 2px solid black;
+}
+
+TBODY TR.mat-row .btn-row {
+  border-bottom: 2px solid white;
+}
+
+TBODY TR.mat-row:hover .btn-row {
+  height: 26px;
+  border-bottom: 2px solid #efefef;
+}
+
+TBODY TR.mat-row:hover .red-x img {
+  width: 14px;
+  height: 14px;
+
+}
+
+.mat-cell {
+  width: 200px;
+  flex:1;
+  text-align: center;
+}
+
+.truncate {
+  width: 200px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.benchmark-table {
+  width: 1000px;
+  overflow-y: auto;
+}
+
+DIV benchmark-table-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+}
+

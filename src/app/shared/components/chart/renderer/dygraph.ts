@@ -1,12 +1,13 @@
 import {IRenderer} from './IRenderer';
-import {ChartUtils} from 'app/chart/renderer/utils';
-import {DataService} from "../../services/DataProvider";
-import {ChartRendererEnum} from "../../state/model/ChartRendererEnum";
+import {ChartUtils} from 'app/shared/components/chart/renderer/utils';
+import {DataService} from "../../../../services/DataProvider";
+import {ChartRendererEnum} from "../../../../state/model/ChartRendererEnum";
 import Dygraph from 'dygraphs';
 
 export class DygraphRenderer implements IRenderer {
+  _chart: any;
   _name: string;
-  _data: DataService;
+  _data: any;
   type: ChartRendererEnum  = ChartRendererEnum.DYGRAPH;
   _chartElement: any;
 
@@ -20,18 +21,14 @@ export class DygraphRenderer implements IRenderer {
 
   public draw() {
 
-
-    let chart;
-
     if (this._chartElement) {
 
-      let dataset = this._data.getData(this.type);
+      let dataset = this._data;
 
       const labels = dataset.labels;
       const datasets = dataset.data;
 
-      console.log( datasets, labels);
-      chart = new Dygraph(this._chartElement,
+      this._chart = new Dygraph(this._chartElement,
         datasets,
         {
           labels: labels,
@@ -39,7 +36,12 @@ export class DygraphRenderer implements IRenderer {
           showLabelsOnHighlight: false
         });
 
-      return chart;
+      return this._chart;
     }
+  }
+
+  destroy() {
+    this._chart.destroy();
+    ChartUtils.destroyChartElement(this._chartElement);
   }
 }

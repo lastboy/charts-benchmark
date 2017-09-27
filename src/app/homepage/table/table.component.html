@@ -1,0 +1,46 @@
+<hr/>
+<div class="benchmark-table-wrapper">
+  <table class="mat-table benchmark-table">
+    <thead>
+    <tr class="mat-header-row mat-row">
+
+      <th class="mat-header-cell mat-cell" >Name</th>
+
+      <th class="mat-header-cell mat-cell">Renderer</th>
+
+      <th class="mat-header-cell mat-cell">Series</th>
+
+      <th class="mat-header-cell mat-cell">Points</th>
+
+      <th class="mat-header-cell mat-cell"> &nbsp;</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="mat-row" *ngFor="let row of benchmarkEvent | async">
+
+      <td class="mat-cell truncate" title="{{row.name}}">{{row.name}}</td>
+
+      <td class="mat-cell">{{row.rendererName}}</td>
+
+      <td class="mat-cell">{{row.chartSeries}}</td>
+
+      <td class="mat-cell">{{row.chartPoints}}</td>
+
+      <td class="mat-cell btns">
+        <button class="btn-row red-x" (click)="remove(row.id)"><img  border="0" src="{{redXImage}}" /></button>
+        <button class="btn-row" (click)="benchmark(row.id)">Benchmark</button>
+
+      </td>
+
+    </tr>
+    </tbody>
+
+  </table>
+
+
+</div>
+
+<div *ngFor="let item of log| async">
+  <span>{{item.date}}</span>
+
+</div>

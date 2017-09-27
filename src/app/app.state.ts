@@ -38,6 +38,7 @@ import {combineReducers} from '@ngrx/store';
  */
 
 import * as chartState from './state/chart/chart.state';
+import {createSelector} from "reselect";
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
@@ -70,3 +71,9 @@ export function reducer(state: any, action: any) {
     return developmentReducer(state, action);
   }
 }
+
+
+export const getChartState = (state: State) => state.chart;
+export const getChartLogs = createSelector(getChartState, (chart) => {
+  console.log('ssssssssssssssssssssss', chart);
+});

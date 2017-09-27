@@ -1,12 +1,14 @@
 import {IRenderer} from './IRenderer';
-import {ChartUtils} from 'app/chart/renderer/utils';
+import {ChartUtils} from 'app/shared/components/chart/renderer/utils';
 import * as Chart from 'chart.js';
-import {DataService} from "../../services/DataProvider";
-import {ChartRendererEnum} from "../../state/model/ChartRendererEnum";
+import {DataService} from "../../../../services/DataProvider";
+import {ChartRendererEnum} from "../../../../state/model/ChartRendererEnum";
 
 export class ChartJS implements IRenderer {
+  _chart: any;
+
   type: ChartRendererEnum = ChartRendererEnum.CHARTJS;
-  _data: DataService;
+  _data: any;
   _name: string;
   _chartElement: any;
 
@@ -25,7 +27,7 @@ export class ChartJS implements IRenderer {
 
     if (this._chartElement) {
 
-      let dataset = this._data.getData(this.type);
+      let dataset = this._data;
 
       const ctx = this._chartElement.getContext('2d');
       const labels = dataset.labels;
@@ -47,13 +49,13 @@ export class ChartJS implements IRenderer {
             datasets: datasets
           },
           options: {
-            elements: {
-              point: {
-                radius: 0,
-                hitRadius: 10,
-                hoverRadius: 5,
-              }
-            },
+            // elements: {
+            //   point: {
+            //     radius: 0,
+            //     hitRadius: 10,
+            //     hoverRadius: 5,
+            //   }
+            // },
             responsive: true,
             maintainAspectRatio: false,
             legend: {
@@ -70,13 +72,19 @@ export class ChartJS implements IRenderer {
           }
         };
 
-        chart = new Chart(ctx, config);
+        this._chart = new Chart(ctx, config);
       }
 
 
-      return chart
+      return this._chart;
     }
     return null;
 
   }
+
+  destroy() {
+    this._chart = null;
+    ChartUtils.destroyChartElement(this._chartElement);
+  }
+
 }

@@ -1,0 +1,27 @@
+<form [formGroup]="chartForm" (submit)="submit()" class="baseForm" target="_blank">
+
+  <div>
+    <md-select placeholder="Chart Renderer Type" formControlName="renderer" class="md-select-placeholder">
+      <md-option   *ngFor="let rendererItem of chartRendererOptions" [value]="rendererItem.value">{{rendererItem.name}}</md-option>
+    </md-select>
+  </div>
+
+  <div>
+    <md-input-container class="inputContainer">
+      <input mdInput formControlName="chartPoints" maxlength="4"  placeholder="Points">
+    </md-input-container>
+  </div>
+
+  <div>
+    <md-input-container class="inputContainer">
+      <input mdInput formControlName="chartSeries" maxlength="4"  placeholder="Series">
+    </md-input-container>
+  </div>
+
+  <div class="buttons">
+    <button type="submit" md-raised-button title="Add a new benchmark item">Add Benchmark</button>
+    <button class="semi-button" md-button (click)="reset()" title="Reset the form fields">Reset</button>
+    <button class="semi-button" md-button (click)="wipe()" title="Reset the form fields and clean the storage">Wipe</button>
+  </div>
+
+</form>

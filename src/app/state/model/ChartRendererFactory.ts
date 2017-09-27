@@ -1,8 +1,9 @@
 import {ChartRendererEnum} from "./ChartRendererEnum";
-import {IRenderer} from "../../chart/renderer/IRenderer";
-import {CanvasJSRenderer} from "../../chart/renderer/canvasjs";
-import {ChartJS} from "../../chart/renderer/chartjs";
-import {DygraphRenderer} from "../../chart/renderer/dygraph";
+import {IRenderer} from "../../shared/components/chart/renderer/IRenderer";
+import {CanvasJSRenderer} from "../../shared/components/chart/renderer/canvasjs";
+import {ChartJS} from "../../shared/components/chart/renderer/chartjs";
+import {DygraphRenderer} from "../../shared/components/chart/renderer/dygraph";
+import {HighchartsRenderer} from "../../shared/components/chart/renderer/highcharts";
 
 export class ChartRendererFactory {
 
@@ -20,6 +21,10 @@ export class ChartRendererFactory {
       }
       case ChartRendererEnum.DYGRAPH: {
         irenderer = new DygraphRenderer();
+        break;
+      }
+      case ChartRendererEnum.HIGHCHARTS: {
+        irenderer = new HighchartsRenderer();
         break;
       }
     }

@@ -1,0 +1,25 @@
+:host /deep/ .mat-select-trigger {
+  width: 550px !important;
+}
+
+.inputContainer {
+  width: 100%;
+}
+
+.baseForm {
+  width: 200px;
+  margin: 20px;
+}
+
+.baseForm DIV {
+  padding: 15px;
+}
+
+.buttons {
+  width: 350px;
+  height: 100px;
+}
+
+.semi-button {
+  color: deepskyblue;
+}

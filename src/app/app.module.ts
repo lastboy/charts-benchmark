@@ -11,10 +11,12 @@ import {RouterModule} from '@angular/router';
 
 import {reducer} from './app.state';
 import {BenchmarkModule} from './benchmark/benchmark.module';
+import {Veyron} from "app/shared/performance/performance";
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

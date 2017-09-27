@@ -1,4 +1,5 @@
 import {ChartRendererEnum} from "../state/model/ChartRendererEnum";
+import {MetaDataProvider} from "./DataProvider";
 export class DataFormatter {
 
   private size = 10;
@@ -6,11 +7,14 @@ export class DataFormatter {
 
   constructor(){}
 
-  public format(renderer: ChartRendererEnum) {
+  public format(metadata: MetaDataProvider) {
 
     let dataset;
 
-    switch (renderer) {
+    this.size = metadata.series;
+    this.points = metadata.points;
+
+    switch (metadata.renderer) {
       case ChartRendererEnum.CANVASJS: {
         dataset = this.canvasjs();
         break;
@@ -21,6 +25,10 @@ export class DataFormatter {
       }
       case ChartRendererEnum.DYGRAPH: {
         dataset = this.dygraphs();
+        break;
+      }
+      case ChartRendererEnum.HIGHCHARTS: {
+        dataset = this.highcharts();
         break;
       }
     }
@@ -79,6 +87,51 @@ export class DataFormatter {
     return {data: dataset, labels: this._labels()};
 
   }
+
+
+  /**
+   * CanvasJS Data Formatter
+   *
+   * @returns {{data: Array, labels: Array<string>}}
+   */
+  private highcharts() {
+
+    let dataset = [];
+    let generatedData = this._data();
+    const labels = this._labels();
+
+    const dataitem = {
+
+    };
+
+
+    /*
+
+     Category data format
+
+     X, y data format
+     data: [
+      [ 1, 0 ],
+     ...
+     ];
+
+     */
+
+    generatedData.forEach((item) => {
+      let tmp = {};
+      Object.assign(tmp, dataitem);
+      tmp['data'] = [];
+      item.data.forEach((value, idx) => {
+        tmp['data'].push([labels[idx], value]);
+      });
+      dataset.push(tmp);
+    });
+
+
+    return {data: dataset, labels: this._labels()};
+
+  }
+
 
   /**
    * ChartJS Data Formatter

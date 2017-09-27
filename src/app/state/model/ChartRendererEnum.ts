@@ -2,6 +2,7 @@ export enum ChartRendererEnum {
   CHARTJS,
   CANVASJS,
   DYGRAPH,
+  HIGHCHARTS,
   D3
 }
 

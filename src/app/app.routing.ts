@@ -13,7 +13,7 @@ export const appRoutes: Routes = [
         component: HomepageComponent
       },
       {
-        path: 'benchmark',
+        path: 'benchmark/:id',
         component: BenchmarkComponent
       },
       {

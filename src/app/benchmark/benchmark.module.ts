@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BenchmarkComponent } from './benchmark.component';
-import { ChartComponent } from '../chart/chart.component';
-import {ChartModule} from '../chart/chart.module';
+import {ChartModule} from '../shared/components/chart/chart.module';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
 
 @NgModule({
   imports: [
     CommonModule,
-    ChartModule
+    ChartModule,
+    BrowserAnimationsModule
   ],
-  declarations: [BenchmarkComponent]
+  declarations: [BenchmarkComponent],
+  providers: []
 })
 export class BenchmarkModule { }
